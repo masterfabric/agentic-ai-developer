@@ -5,6 +5,7 @@ import { MasterFabricLogo } from "@/components/brand/MasterFabricLogo";
 import { CertificateSection } from "@/components/certificate/CertificateSection";
 import { WeightBars } from "@/components/charts/WeightBars";
 import { EvolutionSection } from "@/components/evolution/EvolutionSection";
+import { EnterpriseCard } from "@/components/hero/EnterpriseCard";
 import { OpsHighlights } from "@/components/hero/OpsHighlights";
 import { TechLead } from "@/components/hero/TechLead";
 import { InstructorCard } from "@/components/instructor/InstructorCard";
@@ -78,6 +79,8 @@ export default async function LandingPage({
               </span>
             </Link>
           </div>
+
+          <EnterpriseCard copy={dict.hero.enterprise} />
 
           <div className="mt-16 grid max-w-2xl grid-cols-1 gap-6 border-t border-white/15 pt-8 sm:grid-cols-3">
             {[

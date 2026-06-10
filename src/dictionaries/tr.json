@@ -52,6 +52,18 @@
       "followers": "Takipçi",
       "repos": "Repo"
     },
+    "enterprise": {
+      "kicker": "Kurumsal & Büyük Organizasyonlar",
+      "title": "Özel programlar ve proje partnerliği",
+      "description": "Kurumlar ve büyük ölçekli mühendislik organizasyonları ayrı bir kanaldan başvurabilir: MasterFabric kuruma özel eğitim programları tasarlar ve agentic SDLC adaptasyonundan üretime almaya kadar uzun vadeli proje partnerliği sağlar.",
+      "points": [
+        "Kuruma özel müfredat & kapalı kohortlar",
+        "Agentic SDLC adaptasyon yol haritası",
+        "MasterFabric ile proje partnerliği"
+      ],
+      "cta": "Kurumsal başvuru",
+      "subject": "Kurumsal Başvuru — Özel Eğitim & Proje Partnerliği"
+    },
     "ops": {
       "kicker": "DevOps + SecOps + LLMOps",
       "statement": "AI SDLC artık klasik teslimat hattı değil. Kodu ajanlar yazıp test edip yayına aldığında operasyon, birbirine kenetli üç disipline kırılır — her biri bu müfredatta derinlemesine işlenir.",

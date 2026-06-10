@@ -52,6 +52,18 @@
       "followers": "Followers",
       "repos": "Repos"
     },
+    "enterprise": {
+      "kicker": "Enterprise & Large Organizations",
+      "title": "Custom programs and project partnership",
+      "description": "Enterprises and large-scale engineering organizations can apply through a separate channel: MasterFabric designs private, tailored training programs and provides long-term project partnership — from agentic SDLC adoption to production rollout.",
+      "points": [
+        "Tailored curriculum & private cohorts",
+        "Agentic SDLC adoption roadmap",
+        "Project partnership with MasterFabric"
+      ],
+      "cta": "Enterprise application",
+      "subject": "Enterprise Application — Custom Training & Project Partnership"
+    },
     "ops": {
       "kicker": "DevOps + SecOps + LLMOps",
       "statement": "The AI SDLC is no longer the classic delivery pipeline. When agents write, test and ship the code, operations refract into three interlocking disciplines — each covered in depth by this curriculum.",
