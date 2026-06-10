@@ -59,7 +59,10 @@ export function Turnstile({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const onVerifyRef = useRef(onVerify);
-  onVerifyRef.current = onVerify;
+
+  useEffect(() => {
+    onVerifyRef.current = onVerify;
+  }, [onVerify]);
 
   useEffect(() => {
     let widgetId: string | null = null;

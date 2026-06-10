@@ -2,6 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import {
+  ChatGptIcon,
+  ClaudeIcon,
+  CursorIcon,
+  GeminiIcon,
+} from "@/components/brand/AiProviderIcons";
+import { Turnstile } from "@/components/security/Turnstile";
 
 const ACADEMY_EMAIL = "academy@masterfabric.co";
 
@@ -34,6 +41,7 @@ export interface ApplyCopy {
     claude: string;
     chatgpt: string;
     gemini: string;
+    verifyHint: string;
     deeplinkTitle: string;
     deeplinkHint: string;
   };
@@ -85,6 +93,14 @@ export function ApplySection({
     motivation: "",
   });
   const [copied, setCopied] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const verified = turnstileToken !== "";
+
+  const lockedClass = verified ? "" : " pointer-events-none opacity-50";
+
+  function guardClick(e: React.MouseEvent) {
+    if (!verified) e.preventDefault();
+  }
 
   const prompt = useMemo(() => {
     return promptTemplate
@@ -229,9 +245,19 @@ export function ApplySection({
               />
             </Field>
 
+            {/* Human verification gate for all send actions */}
+            <div className="space-y-2 pt-2">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-white/50">
+                {copy.form.verifyHint}
+              </p>
+              <Turnstile onVerify={setTurnstileToken} />
+            </div>
+
             <a
               href={mailtoHref}
-              className="inline-block border border-white bg-white px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-black transition hover:bg-black hover:text-white"
+              onClick={guardClick}
+              aria-disabled={!verified}
+              className={`inline-block border border-white bg-white px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-black transition hover:bg-black hover:text-white${lockedClass}`}
             >
               {copy.form.send} → {ACADEMY_EMAIL}
             </a>
@@ -254,21 +280,24 @@ export function ApplySection({
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
-                { href: cursorHref, label: copy.form.cursor, icon: "▮", newTab: false },
-                { href: claudeHref, label: copy.form.claude, icon: "✳", newTab: true },
-                { href: chatgptHref, label: copy.form.chatgpt, icon: "◎", newTab: true },
-                { href: geminiHref, label: copy.form.gemini, icon: "✦", newTab: true },
-              ].map((link) => (
+                { href: cursorHref, label: copy.form.cursor, Icon: CursorIcon, newTab: false },
+                { href: claudeHref, label: copy.form.claude, Icon: ClaudeIcon, newTab: true },
+                { href: chatgptHref, label: copy.form.chatgpt, Icon: ChatGptIcon, newTab: true },
+                { href: geminiHref, label: copy.form.gemini, Icon: GeminiIcon, newTab: true },
+              ].map(({ href, label, Icon, newTab }) => (
                 <a
-                  key={link.label}
-                  href={link.href}
-                  className="rgb-button block"
-                  {...(link.newTab
+                  key={label}
+                  href={href}
+                  onClick={guardClick}
+                  aria-disabled={!verified}
+                  className={`rgb-button block${lockedClass}`}
+                  {...(newTab
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
                 >
-                  <span className="rgb-button-inner block bg-black px-4 py-3 text-center font-mono text-[11px] font-bold uppercase tracking-widest text-white">
-                    {link.icon} {link.label}
+                  <span className="rgb-button-inner flex items-center justify-center gap-2 bg-black px-4 py-3 font-mono text-[11px] font-bold uppercase tracking-widest text-white">
+                    <Icon className="h-4 w-4 shrink-0" />
+                    {label}
                   </span>
                 </a>
               ))}

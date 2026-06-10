@@ -2,28 +2,40 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Turnstile } from "@/components/security/Turnstile";
 
 const STORAGE_KEY = "mfa-human";
+
+/* Tiny external store so the gate state syncs with sessionStorage without
+ * setState-in-effect (server snapshot = verified, so SSR renders no gate). */
+const listeners = new Set<() => void>();
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+function getSnapshot() {
+  return sessionStorage.getItem(STORAGE_KEY) === "1";
+}
+function getServerSnapshot() {
+  return true;
+}
+function markHuman() {
+  sessionStorage.setItem(STORAGE_KEY, "1");
+  listeners.forEach((listener) => listener());
+}
 
 /**
  * Fullscreen human-verification gate shown once per browser session,
  * before the site content is revealed.
  */
 export function SiteGate() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem(STORAGE_KEY) !== "1") {
-      setVisible(true);
-    }
-  }, []);
+  const human = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const visible = !human;
 
   function handleVerify(token: string) {
     if (!token) return;
-    sessionStorage.setItem(STORAGE_KEY, "1");
-    setVisible(false);
+    markHuman();
   }
 
   return (

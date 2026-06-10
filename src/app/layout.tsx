@@ -19,6 +19,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://academy.masterfabric.co"),
   title: "MasterFabric Academy — Agentic AI Developer",
   description:
     "Official academic curriculum for the end-to-end autonomous AI agent development lifecycle.",

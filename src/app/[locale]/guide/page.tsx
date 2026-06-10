@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { A4Sheet } from "@/components/a4/A4Sheet";
 import { PrintButton } from "@/components/a4/PrintButton";
@@ -9,6 +10,31 @@ import { getDictionary, isLocale } from "@/lib/i18n";
 export const dynamic = "force-dynamic";
 
 const DOC_REF = "MFA-AG-2026";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+  return {
+    title: dict.guide.title,
+    description:
+      locale === "tr"
+        ? "Agentic AI Developer müfredatının A4 formatındaki akademik çalışma rehberi — tüm domain'ler, ağırlıklar ve altyapı notlarıyla yazdırılabilir baskı."
+        : "The A4 academic study guide for the Agentic AI Developer curriculum — every domain, weight and infrastructure note in a printable edition.",
+    alternates: {
+      canonical: `/${locale}/guide`,
+      languages: {
+        en: "/en/guide",
+        tr: "/tr/guide",
+        "x-default": "/en/guide",
+      },
+    },
+  };
+}
 
 export default async function GuidePage({
   params,
