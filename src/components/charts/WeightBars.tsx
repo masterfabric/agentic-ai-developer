@@ -23,8 +23,8 @@ export function WeightBars({
   return (
     <div className="flex flex-col gap-4">
       {data.map((d, i) => (
-        <div key={d.label} className="grid grid-cols-[1fr_auto] items-end gap-4">
-          <div>
+        <div key={d.label} className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
+          <div className="min-w-0">
             <p className="mb-1.5 truncate font-mono text-[11px] uppercase tracking-wide text-white/60">
               {d.label}
             </p>

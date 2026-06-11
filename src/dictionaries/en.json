@@ -345,7 +345,10 @@
     }
   },
   "footer": {
-    "line": "academy.masterfabric.co is a MasterFabric subsidiary.",
+    "linePrefix": "academy.masterfabric.co is a ",
+    "lineBrand": "MasterFabric",
+    "lineSuffix": " subsidiary.",
+    "brandUrl": "https://masterfabric.co",
     "sourceLabel": "Source code",
     "sourceUrl": "https://github.com/masterfabric/agentic-ai-developer",
     "sourceText": "github.com/masterfabric/agentic-ai-developer"

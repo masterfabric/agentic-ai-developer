@@ -125,7 +125,7 @@ export function IdeSimulation({ sim }: { sim: IdeSim }) {
             <div className="border-b border-white/10 bg-white/[0.04] px-4 py-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40">
               {sim.panelTitle}
             </div>
-            <div className="space-y-1.5 px-4 py-3 font-mono text-[11px] leading-relaxed">
+            <div className="space-y-1.5 overflow-x-auto px-4 py-3 font-mono text-[11px] leading-relaxed [scrollbar-width:thin]">
               {sim.extras.map((line, i) => {
                 const isQuestion = /^[QS]:/.test(line);
                 return (

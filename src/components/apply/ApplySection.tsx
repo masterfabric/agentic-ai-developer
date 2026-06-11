@@ -135,7 +135,7 @@ export function ApplySection({
   }
 
   return (
-    <section id="apply" className="border-t border-white/15">
+    <section id="apply" className="overflow-x-clip border-t border-white/15">
       <div className="mx-auto max-w-6xl px-6 py-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
