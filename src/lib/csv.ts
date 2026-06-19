@@ -1,5 +1,22 @@
 import type { Recipient } from "@/components/generator/CertificateDocument";
 
+/**
+ * Canonical slug derived from a Credential ID. This is the single source of
+ * truth shared by the downloadable file name and the verification URL segment,
+ * so `masterfabric-academy-<slug>.pdf` and `…/certificated-developers/<slug>`
+ * always match. e.g. "MFA-AG-2026-0026" -> "mfa-ag-2026-0026".
+ */
+export function credentialSlug(credentialId: string): string {
+  return (
+    credentialId
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 60) || "credential"
+  );
+}
+
 /** Minimal RFC-4180-ish CSV parser: supports quotes, escaped quotes and commas. */
 export function parseCsv(input: string): string[][] {
   const rows: string[][] = [];
