@@ -51,6 +51,10 @@ export interface GeneratorCopy {
   };
   showModules: string;
   showSeal: string;
+  modulesTitle: string;
+  moduleNameCol: string;
+  moduleWeightCol: string;
+  addModule: string;
   previewTitle: string;
   prev: string;
   next: string;
@@ -188,7 +192,7 @@ function Field({
 
 export function CertificateGenerator({
   copy,
-  modules,
+  modules: initialModules,
   defaults,
 }: {
   copy: GeneratorCopy;
@@ -216,6 +220,7 @@ export function CertificateGenerator({
     showModules: true,
     showSeal: true,
   });
+  const [modules, setModules] = useState<CertModule[]>(initialModules);
   const [recipients, setRecipients] = useState<Recipient[]>([
     { name: defaults.sampleName, credentialId: `${defaults.credentialPrefix}-0001` },
   ]);
@@ -266,6 +271,18 @@ export function CertificateGenerator({
       setCurrent(next.length - 1);
       return next;
     });
+  }
+
+  function updateModule(index: number, patch: Partial<CertModule>) {
+    setModules((ms) => ms.map((m, i) => (i === index ? { ...m, ...patch } : m)));
+  }
+
+  function removeModule(index: number) {
+    setModules((ms) => ms.filter((_, i) => i !== index));
+  }
+
+  function addModule() {
+    setModules((ms) => [...ms, { title: "", weight: undefined }]);
   }
 
   function getNodes(): HTMLElement[] {
@@ -603,6 +620,68 @@ export function CertificateGenerator({
                 />
                 {copy.showSeal}
               </label>
+            </div>
+
+            <div className="mt-6 border-t border-white/10 pt-5">
+              <div className="flex items-center justify-between">
+                <h3 className="font-mono text-[11px] uppercase tracking-widest text-white/60">
+                  {copy.modulesTitle}
+                </h3>
+                <span className="font-mono text-[11px] text-white/40">
+                  {modules.length}
+                </span>
+              </div>
+
+              <div className="mt-3 space-y-2">
+                <div className="grid grid-cols-[1.5rem_minmax(0,1fr)_5rem_1.5rem] gap-2 font-mono text-[9px] uppercase tracking-widest text-white/35">
+                  <span>#</span>
+                  <span>{copy.moduleNameCol}</span>
+                  <span>{copy.moduleWeightCol}</span>
+                  <span />
+                </div>
+                {modules.map((m, i) => (
+                  <div
+                    key={i}
+                    className="grid grid-cols-[1.5rem_minmax(0,1fr)_5rem_1.5rem] items-center gap-2"
+                  >
+                    <span className="font-mono text-[10px] text-white/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <input
+                      value={m.title}
+                      onChange={(e) => updateModule(i, { title: e.target.value })}
+                      className="min-w-0 border border-white/15 bg-white/[0.03] px-2 py-1 text-xs text-white outline-none focus:border-white/60"
+                    />
+                    <input
+                      value={m.weight ?? ""}
+                      onChange={(e) => {
+                        const v = e.target.value.trim();
+                        updateModule(i, {
+                          weight: v === "" ? undefined : Number(v),
+                        });
+                      }}
+                      inputMode="numeric"
+                      className="min-w-0 border border-white/15 bg-white/[0.03] px-2 py-1 font-mono text-[10px] text-white outline-none focus:border-white/60"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeModule(i)}
+                      aria-label={copy.remove}
+                      className="text-white/40 transition hover:text-white"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={addModule}
+                className="mt-3 border border-white/40 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest text-white transition hover:border-white hover:bg-white hover:text-black"
+              >
+                + {copy.addModule}
+              </button>
             </div>
           </section>
         )}
