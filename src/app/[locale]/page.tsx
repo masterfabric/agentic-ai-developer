@@ -56,6 +56,9 @@ export default async function LandingPage({
 
           <div className="mt-6 h-1 w-20 bg-white" />
           <TechLead text={dict.hero.lead} locale={locale} />
+          <p className="mt-4 max-w-2xl text-sm font-medium leading-relaxed text-white/75">
+            {dict.hero.leadExtra}
+          </p>
 
           <OpsHighlights copy={dict.hero.ops} />
 

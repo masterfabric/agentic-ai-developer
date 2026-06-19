@@ -38,6 +38,7 @@
     "title": "Agentic AI Developer Training",
     "subtitle": "End-to-End Autonomous AI Agent Development Lifecycle & Study Guide",
     "lead": "This document is the official academic curriculum guide covering the design, security and deployment of advanced, autonomous and collaborative AI agents running on Next.js 15, Go (Golang), iOS (Swift), Android (Kotlin), Terminal/CLI applications, Cursor IDE, OpenCode, GitHub Copilot, frontier models (Composer 2.5, Claude Opus 4.8, Fable 5), locally hosted open-weight models and independent cloud servers (VPS).",
+    "leadExtra": "We know these AI tools inside out — and we stand behind that. For nearly four years, we have been delivering next-generation SDLCs to our customers, successfully and at scale.",
     "ctaGuide": "Open the Study Guide",
     "ctaWhy": "Why does this exist?",
     "ctaApply": "Apply with AI",
