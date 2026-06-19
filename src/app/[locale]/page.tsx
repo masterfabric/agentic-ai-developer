@@ -80,6 +80,9 @@ export default async function LandingPage({
               </div>
             ))}
           </div>
+          <p className="mt-2 max-w-xl text-[11px] leading-relaxed text-white/30">
+            {dict.hero.toolsNote}
+          </p>
 
           <p className="mt-4 max-w-2xl text-sm font-medium leading-relaxed text-white/75">
             {dict.hero.leadExtra}

@@ -39,6 +39,7 @@
     "subtitle": "Uçtan Uca Otonom Yapay Zeka Ajanları Geliştirme Yaşam Döngüsü & Çalışma Rehberi",
     "lead": "Bu doküman; Next.js 15, Go (Golang), iOS (Swift), Android (Kotlin), Terminal/CLI Uygulamaları, Cursor IDE, OpenCode, GitHub Copilot, sınır modeller (Composer 2.5, Claude Opus 4.8, Fable 5), lokal barındırılan açık ağırlıklı modeller ve bağımsız bulut sunucuları (VPS) üzerinde çalışan ileri düzey, otonom ve işbirlikçi yapay zeka ajanlarının tasarımı, güvenliği ve yayına alınması süreçlerini içeren resmi akademik müfredat kılavuzudur.",
     "leadExtra": "Bu yapay zeka araçlarını çok iyi biliyoruz ve bu konuda iddialıyız. Yaklaşık dört yıldır müşterilerimize yeni nesil SDLC'leri başarıyla sağlıyoruz.",
+    "toolsNote": "Yukarıdaki logolar, aktif olarak kullandığımız yapay zeka araç ve platformlarını belirtir; tüm markalar ilgili sahiplerine aittir.",
     "ctaGuide": "Çalışma Rehberini Aç",
     "ctaWhy": "Bu eğitim neden var?",
     "ctaApply": "AI ile Başvur",
