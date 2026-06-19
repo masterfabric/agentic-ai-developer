@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApplySection } from "@/components/apply/ApplySection";
+import {
+  ChatGptIcon,
+  ClaudeIcon,
+  CursorIcon,
+  GeminiIcon,
+} from "@/components/brand/AiProviderIcons";
 import { MasterFabricLogo } from "@/components/brand/MasterFabricLogo";
 import { CertificateSection } from "@/components/certificate/CertificateSection";
 import { WeightBars } from "@/components/charts/WeightBars";
@@ -56,6 +62,25 @@ export default async function LandingPage({
 
           <div className="mt-6 h-1 w-20 bg-white" />
           <TechLead text={dict.hero.lead} locale={locale} />
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            {[
+              { name: "Cursor", Icon: CursorIcon },
+              { name: "Anthropic", Icon: ClaudeIcon },
+              { name: "OpenAI", Icon: ChatGptIcon },
+              { name: "Gemini", Icon: GeminiIcon },
+            ].map(({ name, Icon }) => (
+              <div
+                key={name}
+                title={name}
+                className="flex aspect-square w-16 items-center justify-center border border-white/20 bg-white/[0.03] transition hover:border-white/50 sm:w-20"
+              >
+                <Icon className="h-7 w-7 text-white sm:h-8 sm:w-8" />
+                <span className="sr-only">{name}</span>
+              </div>
+            ))}
+          </div>
+
           <p className="mt-4 max-w-2xl text-sm font-medium leading-relaxed text-white/75">
             {dict.hero.leadExtra}
           </p>
