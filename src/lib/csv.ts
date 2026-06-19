@@ -17,6 +17,15 @@ export function credentialSlug(credentialId: string): string {
   );
 }
 
+/**
+ * The exact base name used for the downloadable file AND the last segment of
+ * the verification URL, so they are identical. e.g. "MFA-AG-2026-0026" ->
+ * "masterfabric-academy-mfa-ag-2026-0026".
+ */
+export function certificateFileBase(credentialId: string): string {
+  return `masterfabric-academy-${credentialSlug(credentialId)}`;
+}
+
 /** Minimal RFC-4180-ish CSV parser: supports quotes, escaped quotes and commas. */
 export function parseCsv(input: string): string[][] {
   const rows: string[][] = [];

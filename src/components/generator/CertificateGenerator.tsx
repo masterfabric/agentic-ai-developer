@@ -10,7 +10,7 @@ import {
   type CertTemplate,
   type Recipient,
 } from "@/components/generator/CertificateDocument";
-import { credentialSlug, csvToRecipients, SAMPLE_CSV } from "@/lib/csv";
+import { certificateFileBase, csvToRecipients, SAMPLE_CSV } from "@/lib/csv";
 
 export interface GeneratorCopy {
   kicker: string;
@@ -76,9 +76,9 @@ const TABS: { id: TabId }[] = [
   { id: "export" },
 ];
 
-/** masterfabric-academy-mfa-ag-2026-0001 — shares the Credential ID slug with the verify URL. */
+/** masterfabric-academy-mfa-ag-2026-0001 — identical to the verify URL's last segment. */
 function fileBase(recipient: Recipient): string {
-  return `masterfabric-academy-${credentialSlug(recipient.credentialId)}`;
+  return certificateFileBase(recipient.credentialId);
 }
 
 function csvEscape(value: string): string {
@@ -115,7 +115,7 @@ function buildMetadataCsv(recipients: Recipient[], template: CertTemplate): stri
         ? `linkedin.com/in/${template.instructorLinkedin}`
         : "",
       template.verifyUrl
-        ? `${template.verifyUrl.replace(/\/$/, "")}/${credentialSlug(r.credentialId)}`
+        ? `${template.verifyUrl.replace(/\/$/, "")}/${certificateFileBase(r.credentialId)}`
         : "",
       template.directorName,
     ]

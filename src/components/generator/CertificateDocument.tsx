@@ -1,5 +1,5 @@
 import { MasterFabricLogo } from "@/components/brand/MasterFabricLogo";
-import { credentialSlug } from "@/lib/csv";
+import { certificateFileBase } from "@/lib/csv";
 
 export interface CertModule {
   title: string;
@@ -49,10 +49,10 @@ export function CertificateDocument({
   modules: CertModule[];
 }) {
   const issued = recipient.date?.trim() || template.issuedValue;
-  // Same slug as the downloadable file name so link and file always match.
+  // Last URL segment is identical to the downloadable file's base name.
   const verifyHref =
     template.verifyUrl && recipient.credentialId
-      ? `${template.verifyUrl.replace(/\/$/, "")}/${credentialSlug(recipient.credentialId)}`
+      ? `${template.verifyUrl.replace(/\/$/, "")}/${certificateFileBase(recipient.credentialId)}`
       : "";
 
   return (
