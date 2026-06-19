@@ -101,6 +101,18 @@ The sample certificate's module list is generated live from the markdown curricu
 
 The application section lists two cohorts — **Cohort 1: July 1, 2026** and **Cohort 2: September 2026**, each capped at **25 seats** — with applications addressed to [academy@masterfabric.co](mailto:academy@masterfabric.co). Candidates can apply by email, or hand their details to an AI agent via deeplinks (Cursor, Claude, ChatGPT, Gemini) that assemble and verify the application before drafting the email. The prompt templates behind those deeplinks live in [`/prompts`](prompts/) as a public reference.
 
+## Certification
+
+Certificates issued for this program are generated with the in-repo **Certificate Generator** tool at `/en/certificate-generator` (and `/tr/certificate-generator`): upload a CSV of recipients, edit the template, and export each credential as PNG/PDF — or the whole cohort as a ZIP that also contains a metadata CSV.
+
+Each certificate carries:
+
+- the **recipient name** and a **Credential ID** in the form `MFA-AG-2026-00xx`,
+- the **instructor** (name, GitHub and LinkedIn),
+- and a **verification URL** of the form `…/agentic-ai-developer/certificated-developers/<credential-id>` — the credential ID is appended per certificate so each developer resolves to their own entry.
+
+Exported files follow the `masterfabric-academy-<credential-id>.pdf` naming convention, and every batch ships with `masterfabric-academy-certificates.csv` listing the file name, recipient, credential ID, issue date, program, instructor and per-certificate verification URL. To verify a credential, match its Credential ID against the `certificated-developers/` directory and the cohort metadata CSV published here.
+
 ## Model stack
 
 The curriculum and its tooling target a mixed model fleet:
