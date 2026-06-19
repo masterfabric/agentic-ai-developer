@@ -11,8 +11,6 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-000000?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![MasterFabric](https://img.shields.io/badge/MasterFabric-Academy-000000?style=flat-square)](https://masterfabric.co)
 
-<img src="docs/screenshot-hero.png" alt="MasterFabric Academy — Agentic AI Developer landing page" width="100%">
-
 </div>
 
 ---

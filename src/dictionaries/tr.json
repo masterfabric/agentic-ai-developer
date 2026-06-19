@@ -354,7 +354,8 @@
     "brandUrl": "https://masterfabric.co",
     "sourceLabel": "Kaynak kod",
     "sourceUrl": "https://github.com/masterfabric/agentic-ai-developer",
-    "sourceText": "github.com/masterfabric/agentic-ai-developer"
+    "sourceText": "github.com/masterfabric/agentic-ai-developer",
+    "certifiedLabel": "Sertifikalı geliştiriciler"
   },
   "localeSwitcher": {
     "label": "Dil"
