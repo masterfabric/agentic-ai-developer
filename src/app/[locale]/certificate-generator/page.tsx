@@ -57,9 +57,9 @@ const COPY: Record<Locale, GeneratorCopy> = {
     exportTitle: "3 · Generate & download",
     downloadPng: "Download PNG",
     downloadPdf: "Download PDF",
-    downloadMeta: "Metadata CSV",
+    downloadMeta: "Metadata CSV (selected)",
     metaNote:
-      "Files are named masterfabric-academy-<credential-id>.pdf. The ZIP also includes a metadata CSV describing every certificate.",
+      "Files are named masterfabric-academy-<credential-id>.pdf. The Metadata CSV button exports only the selected attendee; the ZIP still bundles a metadata CSV for the whole batch.",
     zipFormatLabel: "ZIP format",
     downloadZip: "Download all as ZIP",
     generating: "Generating {done}/{total}…",
@@ -113,9 +113,9 @@ const COPY: Record<Locale, GeneratorCopy> = {
     exportTitle: "3 · Üret & indir",
     downloadPng: "PNG indir",
     downloadPdf: "PDF indir",
-    downloadMeta: "Meta CSV",
+    downloadMeta: "Meta CSV (seçili)",
     metaNote:
-      "Dosyalar masterfabric-academy-<sertifika-no>.pdf biçiminde adlandırılır. ZIP içine ayrıca tüm sertifikaları açıklayan bir meta CSV eklenir.",
+      "Dosyalar masterfabric-academy-<sertifika-no>.pdf biçiminde adlandırılır. Meta CSV butonu yalnızca seçili katılımcıyı indirir; ZIP ise tüm grup için meta CSV içerir.",
     zipFormatLabel: "ZIP biçimi",
     downloadZip: "Tümünü ZIP indir",
     generating: "Üretiliyor {done}/{total}…",

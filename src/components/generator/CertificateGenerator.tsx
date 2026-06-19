@@ -304,10 +304,12 @@ export function CertificateGenerator({
   }
 
   function downloadMetadata() {
-    const csv = buildMetadataCsv(recipients, template);
+    // Only the currently selected attendee — not the whole list.
+    if (!activeRecipient) return;
+    const csv = buildMetadataCsv([activeRecipient], template);
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    triggerDownload(url, META_FILENAME);
+    triggerDownload(url, `${fileBase(activeRecipient)}.csv`);
     setTimeout(() => URL.revokeObjectURL(url), 4000);
   }
 
