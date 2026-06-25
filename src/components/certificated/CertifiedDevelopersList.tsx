@@ -59,7 +59,9 @@ function buildLinks(dev: CertifiedDeveloper, repoUrl: string) {
   const linkedin = new URL("https://www.linkedin.com/profile/add");
   linkedin.searchParams.set("startTask", "CERTIFICATION_NAME");
   linkedin.searchParams.set("name", dev.program || dev.documentTitle);
-  if (dev.issuer) linkedin.searchParams.set("organizationName", dev.issuer);
+  // LinkedIn org is "MasterFabric" (drop the trailing "Academy").
+  const organizationName = dev.issuer.replace(/\s*academy\s*$/i, "").trim();
+  if (organizationName) linkedin.searchParams.set("organizationName", organizationName);
   if (year) linkedin.searchParams.set("issueYear", year);
   if (month) linkedin.searchParams.set("issueMonth", String(month));
   if (dev.credentialId) linkedin.searchParams.set("certId", dev.credentialId);
