@@ -10,6 +10,12 @@ import { useRef } from "react";
  * The dawn of the agentic era carries the closing thought, then dissolves.
  */
 
+/* Round to a fixed precision so SSR (Node) and client (browser) produce
+ * byte-identical SVG coordinates — Math.sin/cos are not guaranteed to be
+ * bit-identical across JS engines, which otherwise triggers a hydration
+ * mismatch on the sun's rays. */
+const r3 = (n: number) => Math.round(n * 1000) / 1000;
+
 /* Deterministic star field (SSR-safe, no Math.random). */
 const STARS = Array.from({ length: 46 }, (_, i) => ({
   left: (i * 137.508) % 100,
@@ -140,10 +146,10 @@ export function SunriseScene({
                 return (
                   <line
                     key={i}
-                    x1={100 + Math.cos(angle) * inner}
-                    y1={100 + Math.sin(angle) * inner}
-                    x2={100 + Math.cos(angle) * outer}
-                    y2={100 + Math.sin(angle) * outer}
+                    x1={r3(100 + Math.cos(angle) * inner)}
+                    y1={r3(100 + Math.sin(angle) * inner)}
+                    x2={r3(100 + Math.cos(angle) * outer)}
+                    y2={r3(100 + Math.sin(angle) * outer)}
                   />
                 );
               })}
